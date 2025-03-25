@@ -1,13 +1,13 @@
-package com.capgemini.osj.summit.spring_kafka_workshop;
+package com.capgemini.osj.summit.workshop.kafka.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringKafkaWorkshopApplication {
+public class SpringKafkaWorkshopConsumerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringKafkaWorkshopApplication.class, args);
+		SpringApplication.run(SpringKafkaWorkshopConsumerApplication.class, args);
 	}
 
 }

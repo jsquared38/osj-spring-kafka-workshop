@@ -1,0 +1,12 @@
+spring:
+  application:
+     name: spring-kafka-workshop-producer
+  devtools:
+    livereload:
+      port: 35729
+
+api:
+  swapi:
+    base-url: https://swapi.dev/api
+  workshop-consumer:
+    base-url: http://localhost:8081/starwars

@@ -1,0 +1,16 @@
+spring:
+  application:
+     name: spring-kafka-workshop-consumer
+  datasource:
+    url: jdbc:h2:mem:mydb
+    # url: jdbc:h2:file:/workshop
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    devtools:
+  livereload:
+    port: 35728
+server:
+  port: 8081
