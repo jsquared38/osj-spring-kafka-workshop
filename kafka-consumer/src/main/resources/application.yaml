@@ -12,5 +12,18 @@ spring:
     devtools:
   livereload:
     port: 35728
+  kafka:
+    bootstrap-servers: http://host.docker.internal:9092
+    topic:
+      name: starwars
+      partition-count: 1
+      replication-factor: 1
+    consumer:
+      group-id: spring-kafka-workshop-consumer
+      key-deserializer:
+        org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer:
+        com.capgemini.osj.summit.workshop.kafka.consumer.deserializer.StarwarsPeopleDeserializer
+      client-id: spring-kafka-workshop-consumer    
 server:
   port: 8081

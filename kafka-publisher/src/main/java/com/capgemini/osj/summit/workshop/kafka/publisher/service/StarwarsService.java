@@ -1,12 +1,11 @@
 package com.capgemini.osj.summit.workshop.kafka.publisher.service;
 
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,13 +20,15 @@ public class StarwarsService {
     private RestTemplate restTemplate;
 
     private String swapiBaseUrl;
-    private String workshopConsumerBaseUrl;
+    private KafkaTemplate<String, String> kafkaTemplate;
+    private String kafkaTopic;
 
-    public StarwarsService(RestTemplate restTemplate, @Value("${api.swapi.base-url}") String swapiBaseUrl,
-            @Value("${api.workshop-consumer.base-url}") String workshopConsumerBaseUrl) {
+    public StarwarsService(RestTemplate restTemplate, @Value("${api.swapi.base-url}") String swapiBaseUrl, KafkaTemplate<String, String> kafkaTemplate,
+            @Value("${spring.kafka.topic.name}") String kafkaTopic) {
         this.restTemplate = restTemplate;
         this.swapiBaseUrl = swapiBaseUrl;
-        this.workshopConsumerBaseUrl = workshopConsumerBaseUrl;
+        this.kafkaTemplate = kafkaTemplate;
+        this.kafkaTopic = kafkaTopic;
     }
 
     public String resolveRandomCharacter() throws Exception {
@@ -42,13 +43,17 @@ public class StarwarsService {
     public String resolveRandomCharacterAndForward() throws Exception {
         String randomCharacter = resolveRandomCharacter();
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> request = new HttpEntity<>(randomCharacter, headers);
+        CompletableFuture<SendResult<String,String>> sentMessageFuture = kafkaTemplate.send(kafkaTopic, randomCharacter);
 
-        log.info("Forwarding random character to workshop-consumer: {}", randomCharacter);
-        
-        return restTemplate.postForObject(workshopConsumerBaseUrl + "/people", request, String.class);
+        sentMessageFuture.whenComplete((result, ex) -> {
+            if (ex != null) {
+                System.out.println("Error sending message: " + ex.getMessage());
+            } else {
+                System.out.println("Message sent successfully: " + result.getProducerRecord().value());
+            }
+        });
+
+        return randomCharacter;
     }
 
 }
