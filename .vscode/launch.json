@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Workshop Kafka Consumer",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "com.capgemini.osj.summit.workshop.kafka.consumer.SpringKafkaWorkshopConsumerApplication",
+            "projectName": "kafka-consumer",
+        },
+        {
+            "name": "Workshop Kafka Publisher",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "com.capgemini.osj.summit.workshop.kafka.publisher.SpringKafkaWorkshopPublisherApplication",
+            "projectName": "kafka-publisher",
+        }
+    ]
+}

@@ -59,3 +59,9 @@ Here are some useful links to help you solve this workshop.
 - [Spring Kafka API Doc](https://docs.spring.io/spring-kafka/docs/3.3.4/api/)
 - [Spring Boot: Apache Kafka Support](https://docs.spring.io/spring-boot/reference/messaging/kafka.html)
 - [Spring Kafka Tutorial - Baeldung](https://www.baeldung.com/spring-kafka)
+
+# The workshop tasks
+Please follow the tasks mentioned:
+- [Kafka Consumer Tasks](./KafkaConsumerTasks.md): Step-by-step tasks for implementing the Kafka consumer.
+- [Kafka Producer Tasks](./KafkaProducerTasks.md): Step-by-step tasks for implementing the Kafka producer.
+- [Extra Challenges](./ExtraChallenges.md): Explore additional challenges to deepen your understanding.
