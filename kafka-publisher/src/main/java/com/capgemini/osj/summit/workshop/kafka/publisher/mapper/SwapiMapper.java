@@ -14,7 +14,7 @@ public class SwapiMapper {
                 properties.path("name").asText(),
                 properties.path("height").asText(),
                 properties.path("mass").asText(),
-                properties.path("weight").asText());
+                properties.path("birth_year").asText());
         return objectMapper.writeValueAsString(person);
     }
 }
