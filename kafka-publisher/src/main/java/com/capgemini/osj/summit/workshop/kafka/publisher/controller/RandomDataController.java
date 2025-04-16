@@ -17,7 +17,7 @@ public class RandomDataController {
     }
 
     @GetMapping("/starwars/people")
-    public String getStarwarsCharacter(@RequestParam(required = false) boolean forward) {
+    public String getStarwarsCharacter(@RequestParam(required = false) boolean forward) throws Exception {
         if (forward) {
             return starwarsService.resolveRandomCharacterAndForward();
         }

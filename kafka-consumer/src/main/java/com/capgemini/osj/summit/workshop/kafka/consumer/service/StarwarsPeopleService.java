@@ -1,17 +1,18 @@
 package com.capgemini.osj.summit.workshop.kafka.consumer.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.osj.summit.workshop.kafka.consumer.entity.StarwarsPerson;
 import com.capgemini.osj.summit.workshop.kafka.consumer.repository.StarwarsPersonRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class StarwarsPeopleService {
 
     private StarwarsPersonRepository starwarsPersonRepository;
 
-    @Autowired
     public StarwarsPeopleService(StarwarsPersonRepository starwarsPersonRepository) {
         this.starwarsPersonRepository = starwarsPersonRepository;
     }
@@ -27,6 +28,7 @@ public class StarwarsPeopleService {
                 .birthYear(birthYear)
                 .build();
 
+        log.info("Saving Starwars person: {}", starwarsPerson);
         starwarsPersonRepository.save(starwarsPerson);
     }
 
