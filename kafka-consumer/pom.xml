@@ -25,6 +25,12 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>3.5.1</version> <!-- Use the latest compatible version -->
+		</dependency>
+		
 		<!-- Please never ever use this in production code, but this is a PoC so who cares ;) -->
 		<dependency>
 			<groupId>com.h2database</groupId>
